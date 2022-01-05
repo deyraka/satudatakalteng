@@ -3,8 +3,6 @@
     <v-snackbar
       v-model="snackbar"
       absolute
-      top
-      center
       color="red"
     >
       <span>Masukkan kata Kunci pencarian dulu!</span>
