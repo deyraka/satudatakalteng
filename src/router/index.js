@@ -21,7 +21,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/result-page/:keyword",
+    path: "/result-page/s=:keyword",
     name: "ResultPage",
     component: ResultPage,
     props: true,

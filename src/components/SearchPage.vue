@@ -5,9 +5,9 @@
       absolute
       top
       center
-      color="success"
+      color="red"
     >
-      <span>Registration successful!</span>
+      <span>Masukkan kata Kunci pencarian dulu!</span>
       <v-icon dark>
         mdi-checkbox-marked-circle
       </v-icon>
@@ -104,8 +104,12 @@ export default {
     submit() {
       // this.snackbar = true,
       // alert(this.form.search + " is suksess")
-      window.location.href = '/result-page/'+ this.form.search
-      this.resetForm()
+      if(this.form.search.length > 0) {
+        window.location.href = '/result-page/s='+ this.form.search
+        this.resetForm()
+      }else{
+        this.snackbar = true
+      } 
     }
   }
 };
