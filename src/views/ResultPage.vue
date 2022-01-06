@@ -5,12 +5,12 @@
         <v-text-field
           label="Pian handak mencari data? Ketik disini ja!"
           placeholder="ketik nama data yang pian cari"
-          solo
+          solo-inverted
           rounded
           prepend-inner-icon="mdi-magnify"
           clear-icon="mdi-close-circle"
           clearable
-          color="red"
+          color="orange"
           :value="keyword"
           flat
         >
@@ -21,30 +21,33 @@
         <v-subheader>{{header}}</v-subheader>
     </v-row>
     <v-row>
-        <v-card flat>
-            <v-list three-line>
-                <template v-for="(item, index) in items">
-                <v-divider
-                    v-if="item.divider"
-                    :key="index"
-                    :inset="item.inset"
-                ></v-divider>
+      <v-col cols="12">
+        <v-card 
+          flat
+        >
+          <v-list v-if="itemsCount>0" three-line>
+            <template v-for="(item, index) in items">
+              <v-list-item :key="index">
+                <!-- <v-list-item-avatar>
+                <v-img :src="item.avatar"></v-img>
+                </v-list-item-avatar> -->
 
-                <v-list-item v-else :key="item.title">
-                    <!-- <v-list-item-avatar>
-                    <v-img :src="item.avatar"></v-img>
-                    </v-list-item-avatar> -->
-
-                    <v-list-item-content>
-                    <v-list-item-title v-html="item.name"></v-list-item-title>
-                    <v-list-item-subtitle
-                        v-html="item.url"
-                    >{{item}}</v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
-                </template>
-            </v-list>
+                <v-list-item-content>
+                  <v-list-item-title v-html="item.title"></v-list-item-title>
+                  <v-list-item-subtitle
+                    v-html="item.notes"
+                  ></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list>
+          <v-row v-else class="text-center">
+            <v-col>
+              <p class="font-weight-thin">kadeda data yang pian cari</p>
+            </v-col>
+          </v-row>
         </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -58,6 +61,7 @@ export default {
   data: () => ({
     header: "Hasil Pencarian",
     items: [],
+    itemsCount: 0,
     divider: true,
     inset: true,
     /* items: [
@@ -98,10 +102,10 @@ export default {
 
   mounted() {
       axios
-        .get('https://ckan62.bpskalteng.web.id/api/3/action/resource_search?query=name:'+ this.keyword)
-        // .get('https://jsonplaceholder.typicode.com/posts')
+        .get('https://ckan62.bpskalteng.web.id/api/3/action/package_search?q='+ this.keyword)
         .then((response) => {
             // this.loading = false
+            this.itemsCount = response.data.result.count
             this.items = response.data.result.results
             console.log('https://ckan62.bpskalteng.web.id/api/3/action/package_search?q='+ this.keyword)
         })
