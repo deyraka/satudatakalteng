@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import ResultPage from "../views/ResultPage.vue";
+import PackageDetailsPage from "../views/PackageDetailsPage.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,12 @@ const routes = [
     path: "/result-page/s=:keyword",
     name: "ResultPage",
     component: ResultPage,
+    props: true,
+  },
+  {
+    path: "/package-details-page/:id",
+    name: "PackageDetailsPage",
+    component: PackageDetailsPage,
     props: true,
   },
 ];
