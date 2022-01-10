@@ -1,14 +1,28 @@
 <template>
   <v-container>
-    <v-row class="text-center mb-6" justify="center">
-      <div class="d-flex flex-row">
+    <v-row justify="center" align="center">
+      <div class="d-flex ma-2">
+        <!-- <v-card
+          v-for="n in 3"
+          :key="n"
+          class="pa-2"
+          outlined
+          tile
+        >
+          justify-center
+        </v-card> -->
         <v-img
           :src="require('../assets/satudatakalteng.png')"
           contain
           height="50"
+          width="50"
         />
-        <h3>SATU DATA KALTENG</h3>
+        <v-layout 
+          class="ml-3 text-h5" align-center
+        >SATU DATA KALTENG</v-layout>
       </div>
+    </v-row>
+    <v-row class="text-center mb-6" justify="center">
       <v-col cols="12" sm="6" md="6" lg="6">
         <v-text-field
           label="Pian handak mencari data? Ketik disini ja!"
@@ -125,6 +139,6 @@ export default {
       else if (frmt === 'CSV') return 'teal lighten-1'
       else return 'grey'
     },
-  }
+  },
 }
 </script>

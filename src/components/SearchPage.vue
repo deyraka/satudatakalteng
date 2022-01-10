@@ -12,6 +12,7 @@
                   class="my-3"
                   contain
                   height="100"
+                  width="100"
                 />
                 <h3>SATU DATA KALTENG</h3>
               </v-col>
@@ -45,6 +46,20 @@
             </template>
           </v-snackbar>
         </v-col>
+      </v-row>
+      <v-row justify="center" align="start">
+        <div class="d-flex ma-2">
+          <v-img
+            :src="require('../assets/book.gif')"
+            class="my-3"
+            contain
+            height="30"
+            width="30"
+          />
+          <p 
+            class="ml-3 text-capitalize"
+          >SATU DATA KALTENG</p>
+        </div>
       </v-row>
   </v-container>
 </template>

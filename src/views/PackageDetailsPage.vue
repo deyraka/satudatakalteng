@@ -2,8 +2,11 @@
     <v-container>
         <template v-for="(item, index) in items">
             <v-row :key="index">
-                <v-col>
+                <v-col cols="12">
                     {{item.title}}
+                </v-col>
+                <v-col cols="12" class="text-subtitle-1">
+                    {{item.notes}}
                 </v-col>
             </v-row>
         </template>
