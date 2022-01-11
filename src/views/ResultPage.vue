@@ -1,16 +1,7 @@
 <template>
   <v-container>
-    <v-row justify="center" align="center">
+    <!-- <v-row justify="center" align="center">
       <div class="d-flex ma-2">
-        <!-- <v-card
-          v-for="n in 3"
-          :key="n"
-          class="pa-2"
-          outlined
-          tile
-        >
-          justify-center
-        </v-card> -->
         <v-img
           :src="require('../assets/satudatakalteng.png')"
           contain
@@ -21,7 +12,7 @@
           class="ml-3 text-h5" align-center
         >SATU DATA KALTENG</v-layout>
       </div>
-    </v-row>
+    </v-row> -->
     <v-row class="text-center mb-6" justify="center">
       <v-col cols="12" sm="6" md="6" lg="6">
         <v-text-field
@@ -35,6 +26,8 @@
           color="orange"
           :value="keyword"
           flat
+          v-model="keyword"
+          @keydown.enter="warning"
         >
         </v-text-field>
       </v-col>
@@ -59,7 +52,7 @@
                 </v-list-item-avatar> -->
 
                 <v-list-item-content>
-                  <router-link class="text-decoration-none" :to="'/package-details-page/'+ item.id">
+                  <router-link class="text-decoration-none" :to="'/catalog/package-details-page/'+ item.name">
                     <v-list-item-title v-html="item.title"></v-list-item-title>
                   </router-link>
                   <v-list-item-subtitle
@@ -99,6 +92,20 @@
           </v-row>
         </v-card>
       </v-col>
+      <v-snackbar v-model="snackbar" absolute color="red" timeout="2000">
+        <span>Masukkan kata kunci pencarian dulu!  </span>
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="white"
+            icon
+            top right
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            <v-icon>mdi-close-circle</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-row>
   </v-container>
 </template>
@@ -116,6 +123,7 @@ export default {
     itemsCount: 0,
     divider: true,
     inset: true,
+    snackbar: false,
   }),
 
   mounted() {
@@ -130,6 +138,21 @@ export default {
         })
         .catch((e) => { console.log(e) })
   },
+
+  watch: {
+    keyword: function(){
+      axios
+      .get('https://ckan62.bpskalteng.web.id/api/3/action/package_search?q='+ this.keyword)
+      .then((response) => {
+          // this.loading = false
+          this.itemsCount = response.data.result.count
+          this.items = response.data.result.results
+          // this.itemsResources = response.data.result.results
+          // console.log(this.itemsResources)
+      })
+      .catch((e) => { console.log(e) })
+    }
+  },
   
   methods: {
     getColor (frmt) {
@@ -139,6 +162,11 @@ export default {
       else if (frmt === 'CSV') return 'teal lighten-1'
       else return 'grey'
     },
+    warning () {
+      if(this.keyword.length == 0){
+        this.snackbar = true;
+      }
+    }
   },
 }
 </script>

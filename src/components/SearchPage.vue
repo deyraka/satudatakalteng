@@ -1,12 +1,25 @@
 <template>
-  <v-container fill-height class="mx-auto">
+  <v-container fill-height align-center>
+      <v-row class="text-center" justify="center" align="center">
+        <div class="d-flex ma-2">
+          <v-img
+            :src="require('../assets/satudatakalteng.png')"
+            contain
+            height="70"
+            width="70"
+          />
+          <v-layout 
+            class="ml-3 text-h5" align-center
+          >SATU DATA KALTENG</v-layout>
+        </div>
+      </v-row>
       <v-row
-        class="text-center" justify="center"
+        class="text-center mt-n16" justify="center"
       >
         <v-col>
           <v-form ref="form" @submit.prevent="submit">
             <v-row justify="center">
-              <v-col cols="12">
+              <!-- <v-col cols="12">
                 <v-img
                   :src="require('../assets/satudatakalteng.png')"
                   class="my-3"
@@ -15,7 +28,7 @@
                   width="100"
                 />
                 <h3>SATU DATA KALTENG</h3>
-              </v-col>
+              </v-col> -->
               <v-col cols="12" sm="6" md="6">
                 <v-text-field
                   v-model="form.search"
@@ -95,7 +108,7 @@ export default {
       // this.snackbar = true,
       // alert(this.form.search + " is suksess")
       if (this.form.search.length > 0) {
-        window.location.href = "/result-page/s=" + this.form.search;
+        window.location.href = "/catalog/result-page/s=" + this.form.search;
         this.resetForm();
       } else {
         this.snackbar = true;
