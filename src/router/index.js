@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "search",
+    // name: "mainpage",
     component: SearchLayout,
     children:[
       {
