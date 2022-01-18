@@ -13,12 +13,12 @@ const routes = [
     path: "/",
     // name: "mainpage",
     component: SearchLayout,
-    children:[
+    children: [
       {
-        path: '',
+        path: "",
         component: Home,
-      }
-    ]
+      },
+    ],
   },
   // {
   //   path: "/about",
@@ -46,7 +46,7 @@ const routes = [
         component: PackageDetailsPage,
         props: true,
       },
-    ]
+    ],
   },
 ];
 
