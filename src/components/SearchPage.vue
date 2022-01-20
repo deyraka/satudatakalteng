@@ -85,7 +85,12 @@ export default {
       // this.snackbar = true,
       // alert(this.form.search + " is suksess")
       if (this.form.search.length > 0) {
-        window.location.href = "/catalog/result-page/s=" + this.form.search;
+        // window.location.href = "/catalog/result-page/s=" + this.form.search;
+        // this.$router.push("/catalog/result-page/s="+this.form.search);
+        this.$router.push({
+          name: "resultPage",
+          params: { keyword: this.form.search },
+        });
         this.resetForm();
       } else {
         this.snackbar = true;

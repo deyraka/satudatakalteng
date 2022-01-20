@@ -20,6 +20,7 @@
           placeholder="ketik nama data yang pian cari"
           solo-inverted
           rounded
+          autofocus
           prepend-inner-icon="mdi-magnify"
           clear-icon="mdi-close-circle"
           clearable
@@ -52,7 +53,10 @@
                 <v-list-item-content>
                   <router-link
                     class="text-decoration-none"
-                    :to="{ name:'packageDetailsPage', params: {fk: item.id} }"
+                    :to="{
+                      name: 'packageDetailsPage',
+                      params: { fk: item.id },
+                    }"
                   >
                     <v-list-item-title v-html="item.title"></v-list-item-title>
                   </router-link>
@@ -60,7 +64,7 @@
                     v-html="item.notes"
                   ></v-list-item-subtitle> -->
                   <v-list-item-subtitle class="d-flex flex-row font-italic">
-                    <p class="text-caption">sumber: </p>
+                    <p class="text-caption">sumber:</p>
                     <p class="text-caption ml-1 mb-2">
                       {{ item.organization.title }}
                     </p>
@@ -95,8 +99,16 @@
           </v-row>
         </v-card>
       </v-col>
-      <v-snackbar v-model="snackbar" absolute color="red" timeout="2000">
-        <span>Masukkan kata kunci pencarian dulu! </span>
+      <v-snackbar
+        v-model="snackbar"
+        color="red"
+        :timeout="2000"
+        top
+        transition="scroll-y-reverse-transition"
+        rounded="lg"
+        app
+      >
+        <span>Pian ketik dulu kata kuncinya, hanyar dicari! </span>
         <template v-slot:action="{ attrs }">
           <v-btn
             color="white"

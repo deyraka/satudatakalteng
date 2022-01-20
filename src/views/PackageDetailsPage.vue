@@ -2,30 +2,30 @@
   <v-container>
     <!-- <template v-for="(item, index) in items"> -->
     <v-row v-for="(item, index) in items" :key="index">
-        <v-col cols="12">
-            <v-card flat>
-            <v-col cols="12" class="text-h5">
-                {{ item.packages.result.title }}
-            </v-col>
-            <v-col cols="12" class="text-subtitle-1">
-                <p class="text-caption mb-n1 font-italic">Deskripsi dataset :</p>
-                {{ item.packages.result.notes }}
-            </v-col>
-            <v-col cols="12" class="text-caption font-italic mt-n2">
-                <p>sumber : {{ item.packages.result.organization.title }}</p>
-            </v-col>
-            </v-card>
-        </v-col>
-        <v-col cols="12">
-            <resource-list :resources="item.resources"></resource-list>
-        </v-col>
-        <v-col cols="12">
-            <package-additional-info 
-                :general="item.packages" 
-                :org-name="item.packages.result.organization.title"
-                :org-img="item.packages.result.organization.image_url"
-            ></package-additional-info>
-        </v-col>
+      <v-col cols="12">
+        <v-card flat>
+          <v-col cols="12" class="text-h5">
+            {{ item.packages.result.title }}
+          </v-col>
+          <v-col cols="12" class="text-subtitle-1">
+            <p class="text-caption mb-n1 font-italic">Deskripsi dataset :</p>
+            {{ item.packages.result.notes }}
+          </v-col>
+          <v-col cols="12" class="text-caption font-italic mt-n2">
+            <p>sumber : {{ item.packages.result.organization.title }}</p>
+          </v-col>
+        </v-card>
+      </v-col>
+      <v-col cols="12">
+        <resource-list :resources="item.resources"></resource-list>
+      </v-col>
+      <v-col cols="12">
+        <package-additional-info
+          :general="item.packages"
+          :org-name="item.packages.result.organization.title"
+          :org-img="item.packages.result.organization.image_url"
+        ></package-additional-info>
+      </v-col>
     </v-row>
     <!-- </template> -->
   </v-container>

@@ -5,6 +5,7 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import Home from "@/views/Home.vue";
 import ResultPage from "@/views/ResultPage.vue";
 import PackageDetailsPage from "@/views/PackageDetailsPage.vue";
+import ResourcePage from "@/views/ResourcePage.vue";
 
 Vue.use(VueRouter);
 
@@ -35,15 +36,21 @@ const routes = [
     component: AppLayout,
     children: [
       {
-        path: "result-page/s=:keyword",
+        path: "result-page",
         name: "resultPage",
         component: ResultPage,
         props: true,
       },
       {
-        path: "package-details-page/:fk",
+        path: "package-details-page",
         name: "packageDetailsPage",
         component: PackageDetailsPage,
+        props: true,
+      },
+      {
+        path: "resource-page",
+        name: "resourcePage",
+        component: ResourcePage,
         props: true,
       },
     ],
